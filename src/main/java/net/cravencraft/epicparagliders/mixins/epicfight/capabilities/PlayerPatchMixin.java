@@ -66,7 +66,7 @@ public abstract class PlayerPatchMixin<T extends Player> extends LivingEntityPat
         // Easy way to ensure only my stamina values are being applied.
         // So I don't have to edit 5+ different methods.
         if (botwStamina.isPerformingAction() && !botwStamina.isAttacking()) {
-            botwStamina.setActionStaminaCost((int) value);
+            botwStamina.setActionStaminaCost((int) value / 10);
         }
         ci.cancel();
     }
