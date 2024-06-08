@@ -53,7 +53,7 @@ public class MathUtils {
                 .getCompound("common")
                 .getInt("stamina_cost");
 
-        WeaponType weaponType = WeaponType.valueOf(weaponTag.get("type").getAsString().toUpperCase());
+        WeaponType weaponType = WeaponType.valueOf(weaponTag.get("type").getAsString().toUpperCase().split(":")[1]);
 
         double totalStaminaCost;
 

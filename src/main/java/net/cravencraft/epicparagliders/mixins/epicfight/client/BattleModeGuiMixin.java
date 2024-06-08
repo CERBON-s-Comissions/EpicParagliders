@@ -26,13 +26,13 @@ import yesman.epicfight.client.gui.BattleModeGui;
 import yesman.epicfight.client.gui.EntityIndicator;
 import yesman.epicfight.client.gui.ModIngameGui;
 import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
-import yesman.epicfight.config.ConfigurationIngame;
+import yesman.epicfight.config.EpicFightOptions;
 
 @Mixin(BattleModeGui.class)
 public abstract class BattleModeGuiMixin extends ModIngameGui {
     @Shadow(remap = false) private int sliding;
     @Shadow(remap = false) private boolean slidingToggle;
-    @Shadow(remap = false) @Final private ConfigurationIngame config;
+    @Shadow(remap = false) @Final private EpicFightOptions config;
 
     private int maxPossibleStamina = Cfg.get().maxStamina();
     private boolean decreaseOpacity;

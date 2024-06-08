@@ -40,7 +40,7 @@ public abstract class LocalPlayerPatchMixin extends AbstractClientPlayerPatch<Lo
                 ClientEngine.getInstance().renderEngine.upSlideSkillUI();
             }
 
-            if (EpicFightMod.CLIENT_INGAME_CONFIG.cameraAutoSwitch.getValue()) {
+            if (EpicFightMod.CLIENT_CONFIGS.cameraAutoSwitch.getValue()) {
                 this.minecraft.options.setCameraType(CameraType.THIRD_PERSON_BACK);
             }
 
@@ -70,7 +70,7 @@ public abstract class LocalPlayerPatchMixin extends AbstractClientPlayerPatch<Lo
                 ClientEngine.getInstance().renderEngine.downSlideSkillUI();
             }
 
-            if (EpicFightMod.CLIENT_INGAME_CONFIG.cameraAutoSwitch.getValue()) {
+            if (EpicFightMod.CLIENT_CONFIGS.cameraAutoSwitch.getValue()) {
                 this.minecraft.options.setCameraType(CameraType.FIRST_PERSON);
             }
 

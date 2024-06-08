@@ -124,4 +124,22 @@ public enum WeaponType {
                 return player.getAttributeValue(EpicParaglidersAttributes.DEFAULT_STAMINA_REDUCTION.get());
         }
     }
+
+//    public static WeaponType fromString(String weaponType) {
+//        return switch (weaponType) {
+//            case "axe" -> AXE;
+//            case "hoe" -> HOE;
+//            case "shovel" -> SHOVEL;
+//            case "pickaxe" -> PICKAXE;
+//            case "dagger" -> DAGGER;
+//            case "sword" -> SWORD;
+//            case "longsword" -> LONGSWORD;
+//            case "greatsword" -> GREATSWORD;
+//            case "spear" -> SPEAR;
+//            case "knuckle" -> KNUCKLE;
+//            case "tachi" -> TACHI;
+//            case "uchigatana" -> UCHIGATANA;
+//            default -> SWORD;
+//        };
+//    }
 }

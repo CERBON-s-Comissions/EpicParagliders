@@ -13,9 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tictim.paraglider.forge.capability.PlayerMovementProvider;
 import tictim.paraglider.impl.movement.PlayerMovement;
-import yesman.epicfight.skill.Skill;
-import yesman.epicfight.skill.SkillContainer;
-import yesman.epicfight.skill.SkillDataManager;
+import yesman.epicfight.skill.*;
 import yesman.epicfight.skill.identity.MeteorSlamSkill;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.entity.eventlistener.HurtEvent;
@@ -24,7 +22,7 @@ import yesman.epicfight.world.entity.eventlistener.SkillExecuteEvent;
 @Mixin(MeteorSlamSkill.class)
 public abstract class MeteorSlamSkillMixin extends Skill {
 
-    @Shadow(remap = false) @Final private static SkillDataManager.SkillDataKey<Boolean> PROTECT_NEXT_FALL;
+//    @Shadow(remap = false) @Final private static SkillDataKey<Boolean> PROTECT_NEXT_FALL;
 
     public MeteorSlamSkillMixin(Builder<? extends Skill> builder) {
         super(builder);
@@ -75,13 +73,13 @@ public abstract class MeteorSlamSkillMixin extends Skill {
      */
     @Inject(at = @At("HEAD"), remap = false, cancellable = true, method = "lambda$onInitiate$5")
     private static void modifyFallDamageMitigation(SkillContainer container, HurtEvent.Pre event, CallbackInfo ci) {
-        if (event.getDamageSource().is(DamageTypeTags.IS_FALL) && container.getDataManager().getDataValue(PROTECT_NEXT_FALL)) {
+        if (event.getDamageSource().is(DamageTypeTags.IS_FALL) && container.getDataManager().getDataValue(SkillDataKeys.PROTECT_NEXT_FALL.get())) {
             float stamina = container.getExecuter().getStamina();
             float damage = event.getAmount();
             int damageReduction = (int) Math.round(damage - (stamina * ConfigManager.SERVER_CONFIG.meteorSlamFallDamageMitigator()));
             event.setAmount(damageReduction);
             event.setCanceled(true);
-            container.getDataManager().setData(PROTECT_NEXT_FALL, false);
+            container.getDataManager().setData(SkillDataKeys.PROTECT_NEXT_FALL.get(), false);
         }
         ci.cancel();
     }

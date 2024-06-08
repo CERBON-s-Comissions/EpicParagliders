@@ -28,7 +28,7 @@ public abstract class InGameStaminaWheelRendererMixin extends StaminaWheelRender
     private boolean staminaBarShowing;
     @Shadow private boolean full;
 
-    @Shadow private long fullTime;
+    @Shadow private long fullDuration;
 
     @Inject(at = @At("HEAD"), remap = false, cancellable = true, method = "makeWheel")
     private void epicFightStaminaWheelSupport(Player player, Wheel wheel, CallbackInfo ci) {
@@ -43,9 +43,9 @@ public abstract class InGameStaminaWheelRendererMixin extends StaminaWheelRender
                 long timeDiff;
                 if(!this.full){
                     this.full = true;
-                    this.fullTime = time;
+                    this.fullDuration = time;
                     timeDiff = 0;
-                }else timeDiff = time - this.fullTime;
+                }else timeDiff = time - this.fullDuration;
                 int color = StaminaWheelConstants.getGlowAndFadeColor(timeDiff);
                 if(FastColor.ARGB32.alpha(color)<=0) return;
                 wheel.fill(0, stamina, color);
