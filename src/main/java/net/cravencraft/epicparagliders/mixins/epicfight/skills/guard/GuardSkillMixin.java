@@ -84,7 +84,7 @@ public abstract class GuardSkillMixin extends Skill {
         guardConsumption = (guardConsumption > poise) ? (guardConsumption - poise) : 0;
 
         ((StaminaOverride) playerMovement.stamina()).performingAction(true);
-        playerPatch.setStamina((float) guardConsumption);
+        ((StaminaOverride) playerMovement.stamina()).setTotalActionStaminaCostServerSide((int) guardConsumption);
 
         if (playerMovement.stamina().isDepleted()) {
             return GuardSkill.BlockType.GUARD_BREAK;

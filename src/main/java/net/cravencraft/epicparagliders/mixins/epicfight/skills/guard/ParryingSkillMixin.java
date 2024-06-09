@@ -127,7 +127,7 @@ public abstract class ParryingSkillMixin extends GuardSkill {
             guardConsumption = 0;
         }
 
-        botwStamina.setActionStaminaCost(guardConsumption);
+        botwStamina.setTotalActionStaminaCostServerSide(guardConsumption);
         botwStamina.performingAction(true);
 
         if (playerMovement.stamina().isDepleted()) {

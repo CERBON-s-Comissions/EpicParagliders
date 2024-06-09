@@ -37,7 +37,9 @@ public abstract class DodgeSkillMixin extends Skill {
         else if (skillName.equals("roll")) {
             this.consumption = ConfigManager.SERVER_CONFIG.baseRollStaminaCost();
         }
+        StaminaOverride staminaOverride = ((StaminaOverride) PlayerMovementProvider.of(executer.getOriginal()).stamina());
 
-        ((StaminaOverride) PlayerMovementProvider.of(executer.getOriginal()).stamina()).performingAction(true);
+        staminaOverride.setTotalActionStaminaCostServerSide((int) this.consumption);
+        staminaOverride.performingAction(true);
     }
 }

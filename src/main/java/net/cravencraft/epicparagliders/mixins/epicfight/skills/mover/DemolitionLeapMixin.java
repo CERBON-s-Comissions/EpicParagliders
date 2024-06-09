@@ -33,7 +33,9 @@ public abstract class DemolitionLeapMixin extends Skill implements ChargeableSki
 
             if (caster.getStamina() > totalStaminaConsumption) {
                 if (playerMovement instanceof ServerPlayerMovement) {
-                    ((StaminaOverride) playerMovement.stamina()).performingAction(true);
+                    StaminaOverride staminaOverride = (StaminaOverride) playerMovement.stamina();
+                    staminaOverride.setTotalActionStaminaCostServerSide((int) this.consumption);
+                    staminaOverride.performingAction(true);
                     caster.setStamina(this.consumption);
                 }
 
